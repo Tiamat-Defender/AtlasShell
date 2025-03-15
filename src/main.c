@@ -29,7 +29,7 @@ int main() {
     input[n - 1] = '\0';
     
     //Exit command
-    if (!strcmp(input, "exit 0")) exit(0);
+    if (!strcmp(input, "exit")) exit(0);
 
     //Echo Command
     else if (strncmp(input, "echo", 4) == 0) {
@@ -63,12 +63,17 @@ int main() {
 
     } 
 
-    //CD command
+    /*
+    FILE SYSTEM INTERFACE
+    _____________________
+    _____________________
+    _____________________
+    */
+    //CD
     else if (strncmp("cd", input, 2) == 0) {
       char *arguments = input + 2;
       while (*arguments == ' ') arguments++;
-  
-      // Check if directory exists
+
       if (DirectoryExists(arguments) == 1) {
           CURRENT_DIR = arguments;
       } else {
@@ -76,16 +81,19 @@ int main() {
       }
       goto start;
     }
+
     //PWD
     else if (strncmp("pwd", input, 3) == 0) {
       printf("Current PATH \n_____________\n%s\n\n",CURRENT_DIR);
       goto start;
     }
+
     //LS
     else if (strncmp("ls", input, 2) == 0) {
       //Loop through files and directories
 
     }
+
     //mkdir
     else if (strncmp("mkdir", input, 4) == 9) {
       char *arguments = input + 4;
@@ -96,11 +104,36 @@ int main() {
         goto start;
     }
 
-    //rm
+    //cat
+    else if (strncmp("cat", input , 3) == 0) {
+      char *arguments = input + 3;
+      while (*arguments == ' ') arguments++;
 
-    // ./
+      size_t path_size = strlen(CURRENT_DIR) + strlen(arguments) + 2;
+      char* FILE_PATH = (char*)malloc(path_size);
+      if (FILE_PATH == NULL) {
+          fprintf(stderr, "Memory allocation failed\n");
+          goto start;
+      }
+
+      snprintf(FILE_PATH, path_size, "%s\\/%s", CURRENT_DIR, arguments);
   
-    //This should be at the end of the loop
+      // Open the file
+      FILE* file = fopen(FILE_PATH, "r");
+      if (file == NULL) {
+          fprintf(stderr, "%s: Not found\nDir\n______\n%s", arguments,FILE_PATH);
+      } else {
+          char ch;
+          while ((ch = fgetc(file)) != EOF) {
+              putchar(ch);
+          }
+          fclose(file);
+      }
+  
+      free(FILE_PATH);
+  }
+
+    //Invalid command
     else fprintf(stderr, "%s: command not found\n", input);
   }
   return 0;
