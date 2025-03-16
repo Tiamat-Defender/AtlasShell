@@ -17,7 +17,8 @@ int main() {
  
   while (1) {
     start:
-    printf("%s$ ", CURRENT_DIR);
+    if (CURRENT_DIR == "") printf("$ ");
+    else printf("%s: ", CURRENT_DIR);
     
     //Flush our input
     fflush(stdout);
@@ -41,7 +42,7 @@ int main() {
 
     //Type Command
     else if (strncmp("type", input, 4) == 0) {
-      char builtins[][16] = {"echo", "type", "exit", "cd", "ls"};
+      char builtins[][16] = {"echo", "type", "exit", "cd", "ls", "cat", "mkdir", "pwd"};
       char *arguments = input + 4;
       while (*arguments == ' ') arguments++;
 
@@ -115,9 +116,14 @@ int main() {
           fprintf(stderr, "Memory allocation failed\n");
           goto start;
       }
-
-      snprintf(FILE_PATH, path_size, "%s\\/%s", CURRENT_DIR, arguments);
-  
+      
+      #ifdef _WIN32
+      snprintf(FILE_PATH, path_size, "%s\\%s", CURRENT_DIR, arguments);
+      #endif
+      #ifdef __linux__
+      snprintf(FILE_PATH, path_size, "%s/%s", CURRENT_DIR, arguments);
+      #endif
+      
       // Open the file
       FILE* file = fopen(FILE_PATH, "r");
       if (file == NULL) {
