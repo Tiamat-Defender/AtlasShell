@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "builtins.h": "c",
+        "exit.h": "c",
+        "echo.h": "c",
+        "stat.h": "c"
+    }
+}
