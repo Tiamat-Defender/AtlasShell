@@ -7,11 +7,12 @@
 #include "exit.h"
 #include "echo.h"
 #include "type.h"
+#include "builtins.h"
+#include "mkdir.h"
 
 int main() {
 
   char input[100];
-  char* CURRENT_DIR = "";
  
   while (1) {
     start:
@@ -26,9 +27,7 @@ int main() {
     int n = strlen(input);
     
     input[n - 1] = '\0';
-
-    //Begin parsing the command
-
+    
     //Exit
     if (!strcmp(input, "exit")) {
       EXIT_COMMAND();
@@ -52,10 +51,8 @@ int main() {
     else if (strncmp("MKDIR", input, 5) == 0) {
       char *arguments = input + 5;
       while (*arguments == ' ') arguments++;
-      
+      MKDIR_COMMAND(arguments);
     }
-    
-
     //Command not found
     else {
       printf("%s : Command not found", input);
