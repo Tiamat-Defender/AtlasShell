@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/shell.dir/src/echo.c.o CMakeFiles/shell.dir/src/exit.c.o CMakeFiles/shell.dir/src/main.c.o CMakeFiles/shell.dir/src/type.c.o -o shell 

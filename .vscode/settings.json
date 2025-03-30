@@ -4,6 +4,12 @@
         "exit.h": "c",
         "echo.h": "c",
         "stat.h": "c",
-        "type.h": "c"
+        "type.h": "c",
+        "stddef.h": "c",
+        "globals.h": "c",
+        "dirent.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "mkdir.h": "c"
     }
 }

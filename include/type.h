@@ -1,3 +1,1 @@
-#pragma once
-
-void TYPE_COMMAND(const char** Type);
+void TYPE_COMMAND(const char* Type);

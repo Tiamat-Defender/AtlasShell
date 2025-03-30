@@ -1,8 +1,9 @@
 #pragma once
-#include "builtins.h"
 #include <stddef.h>
 
-void TYPE_COMMAND(const char** Type) {
+const char* builtins[] = {"echo", "exit", "type"};
+
+void TYPE_COMMAND(const char* Type) {
     
     for (size_t i = 0; i < sizeof(builtins) / 16; i++) {
               if (strcmp(builtins[i], Type) == 0) {
