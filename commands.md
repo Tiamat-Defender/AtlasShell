@@ -1,7 +1,7 @@
-exit 
-echo 
-type
-mkdir
+exit |
+echo |
+type |
+mkdir|
 cd 
 rm
 ./

@@ -7,6 +7,8 @@
 #include "exit.h"
 #include "echo.h"
 #include "type.h"
+#include "mkdir.h"
+#include "cd.h"
 
 int main() {
 
@@ -44,6 +46,20 @@ int main() {
       char *arguments = input + 4;
       while (*arguments == ' ') arguments++;
       TYPE_COMMAND(arguments);
+    }
+
+    //Mkdir
+    else if (strncmp("mkdir", input, 5) == 0) {
+      char *arguments = input + 5;
+      while (*arguments == ' ') arguments++;
+      MKDIR_COMMAND(arguments, CURRENT_DIR);
+    }
+
+    //cd 
+    else if (strncmp("cd", input, 2) == 0) {
+      char *arguments = input + 2;
+      while (*arguments == ' ') arguments++;
+      CD_COMMAND(arguments, &CURRENT_DIR);
     }
     //Command not found
     else {

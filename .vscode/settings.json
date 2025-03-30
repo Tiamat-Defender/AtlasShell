@@ -10,6 +10,9 @@
         "dirent.h": "c",
         "string.h": "c",
         "stdlib.h": "c",
-        "mkdir.h": "c"
+        "mkdir.h": "c",
+        "stdio.h": "c",
+        "types.h": "c",
+        "cd.h": "c"
     }
 }
