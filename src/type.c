@@ -3,6 +3,7 @@
 
 const char* builtins[] = {"echo", "exit", "type"};
 
+
 void TYPE_COMMAND(const char* Type) {
     
     for (size_t i = 0; i < sizeof(builtins) / 16; i++) {

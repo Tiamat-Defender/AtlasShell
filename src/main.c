@@ -9,16 +9,20 @@
 #include "type.h"
 #include "mkdir.h"
 #include "cd.h"
+#include "ls.h"
+#include "rm.h"
+#include "man.h"
+
 
 int main() {
 
   char input[100];
-  char* CURRENT_DIR = "/";
+  const char* CURRENT_DIR = "/";
  
   while (1) {
     start:
-    if (CURRENT_DIR == "") printf("$ ");
-    else printf("%s: ", CURRENT_DIR);
+
+    printf("%s: ", CURRENT_DIR);
     
     //Flush our input
     fflush(stdout);
@@ -61,6 +65,29 @@ int main() {
       while (*arguments == ' ') arguments++;
       CD_COMMAND(arguments, &CURRENT_DIR);
     }
+
+    //ls
+    else if (strncmp("ls", input, 2) == 0) {
+      char *arguments = input + 2;
+      while (*arguments == ' ') arguments++;
+      LS_COMMAND(CURRENT_DIR);
+    }
+    
+    //rm
+    else if (strncmp("rm", input, 2) == 0) {
+      char *arguments = input + 2;
+      while (*arguments == ' ') arguments++;
+      RM_COMMAND(arguments);
+
+    }
+
+    //man
+    else if (strncmp("MAN", input, 3) == 0) {
+      char *arugment = input + 3;
+      while (*arugment == ' ') arugment++;
+
+    }
+
     //Command not found
     else {
       printf("%s : Command not found", input);

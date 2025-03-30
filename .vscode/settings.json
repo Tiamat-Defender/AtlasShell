@@ -13,6 +13,7 @@
         "mkdir.h": "c",
         "stdio.h": "c",
         "types.h": "c",
-        "cd.h": "c"
+        "cd.h": "c",
+        "rm.h": "c"
     }
 }

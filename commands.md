@@ -2,9 +2,10 @@ exit |
 echo |
 type |
 mkdir|
-cd 
-rm
+cd   |
+rm   |
+rmdir
 ./
-ls
-man
+ls   |
+man   
 pwd
